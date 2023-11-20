@@ -10,9 +10,9 @@
   <h1>加速度センサとデバイスの向き</h1>
 
   <div id="accelerometer">
-    <p>X: {{x}}</p>
-    <p>Y: {{y}}</p>
-    <p>Z: {{z}}</p>
+    <p>X: <span id ="x"></p>
+    <p>Y: <span id ="y"></p>
+    <p>Z: <span id ="z"></p>
   </div>
 
   <div id="deviceorientation">
@@ -71,23 +71,20 @@
     }
 
     // 加速度センサの値を更新する
-    setInterval(updateAcceleration, 1000);
-
-   
-    var accelerationX, accelerationY, accelerationZ;
+    //setInterval(updateAcceleration, 1000);
 
     function updateAcceleration() {
       // 加速度センサの値を取得
       if (window.DeviceMotionEvent) {
-        accelerationX = event.accelerationX;
-        accelerationY = event.accelerationY;
-        accelerationZ = event.accelerationZ;
+        var X = -1*Math.round(e.beta/5);   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
+        var Y = Math.round(e.gamma/5);  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
+        var Z = Math.round(e.alpha);  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
       }
 
       // 値を HTML 要素に表示
-      document.getElementById("x").innerHTML = accelerationX.toFixed(2);
-      document.getElementById("y").innerHTML = accelerationY.toFixed(2);
-      document.getElementById("z").innerHTML = accelerationZ.toFixed(2);
+      document.getElementById("x").innerHTML = X.toFixed(2);
+      document.getElementById("y").innerHTML = Y.toFixed(2);
+      document.getElementById("z").innerHTML = Z.toFixed(2);
     }
   </script>
 </body>
