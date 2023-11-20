@@ -74,18 +74,18 @@
     setInterval(updateAcceleration, 1000);
 
     // 加速度センサの値を取得
-    function updateAcceleration() {
-      // 加速度センサの値を取得
+    function updateAcceleration(e) {
+  // 加速度センサの値を取得
       if (window.DeviceMotionEvent) {
-        var x   = event.accelerationIncludingGravity.x;
-	      var y   = event.accelerationIncludingGravity.y;
-	      var z   = event.accelerationIncludingGravity.z;
+        var x = event.accelerationX;
+        var y = event.accelerationY;
+        var z = event.accelerationZ;
         // 値を HTML 要素に表示
         document.getElementById("x").innerHTML = x.toFixed(2);
         document.getElementById("y").innerHTML = y.toFixed(2);
         document.getElementById("z").innerHTML = z.toFixed(2);
       }
-    }
+}
   </script>
 </body>
 </html>
